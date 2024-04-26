@@ -3,6 +3,7 @@ from src.vacancy_method import VacancyDataSaver
 from src.API_classes import VacancyFromHH
 from src.vacancy_classes import Vacancy
 from db_classes import fill_database
+from db_classes import DBManager
 
 i = VacancyFromHH.get_vacancy_from_hh()
 list_of_employers_all = [item['employer']["id"] for item in i]
@@ -48,10 +49,9 @@ b.add_vacancies_to_file(data_dict)
 
 fill_database(data_dict, data_employers)
 
-"""b.add_vacancies_to_file([new_vacancy])
-print("Хотите ли вы удалить данные? y/n")
-answer = input()
-if answer == "y":
-    b.del_data()
-else:
-    pass"""
+a = DBManager()
+a.get_companies_and_vacancies_count()
+a.get_all_vacancies()
+a.get_avg_salary()
+a.get_vacancies_with_higher_salary()
+a.get_vacancies_with_keyword("директор")
